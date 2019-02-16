@@ -1938,7 +1938,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffd12f;
+  background: #edff38;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2938,7 +2938,7 @@ img:hover {
   box-sizing: border-box;
   padding: 40px;
   width: 700px;
-  background: #fff;
+  background: rgba(255,255,255,0.5);
   min-height: 700px;
   box-shadow: initial;
   border-radius: initial;
@@ -3288,168 +3288,179 @@ audio {
 audio:hover {
   opacity: 1;
 }
-.wall {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-div#background {
-  background: url("../images/preview.jpg") no-repeat;
-  -webkit-animation: dd 100s linear infinite;
-  -moz-animation: dd 100s linear infinite;
-  -o-animation: dd 100s linear infinite;
-  animation: dd 100s linear infinite;
-  background-size: cover;
-}
-div#midground {
-  background: url("../images/midground.png");
-  z-index: 1;
-  -webkit-animation: cc 100s linear infinite;
-  -moz-animation: cc 100s linear infinite;
-  -o-animation: cc 100s linear infinite;
-  animation: cc 100s linear infinite;
-}
-div#foreground {
-  background: url("../images/foreground.png");
-  z-index: 2;
-  -webkit-animation: cc 153s linear infinite;
-  -o-animation: cc 153s linear infinite;
-  -moz-animation: cc 153s linear infinite;
-  animation: cc 153s linear infinite;
-}
-div#top {
-  background: url("../images/midground.png");
-  z-index: 4;
-  -webkit-animation: dd 100s linear infinite;
-  -o-animation: dd 100s linear infinite;
-  animation: da 100s linear infinite;
-}
+@media screen and (min-width: 1200px) {
+  body {
+    background-image: url("/images/preview.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+  }
+  #footer a {
+    color: #eee;
+  }
+  .wall {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  div#background {
+    background: url("../images/preview.jpg") no-repeat;
+    -webkit-animation: dd 100s linear infinite;
+    -moz-animation: dd 100s linear infinite;
+    -o-animation: dd 100s linear infinite;
+    animation: dd 100s linear infinite;
+    background-size: cover;
+  }
+  div#midground {
+    background: url("../images/midground.png");
+    z-index: 1;
+    -webkit-animation: cc 100s linear infinite;
+    -moz-animation: cc 100s linear infinite;
+    -o-animation: cc 100s linear infinite;
+    animation: cc 100s linear infinite;
+  }
+  div#foreground {
+    background: url("../images/foreground.png");
+    z-index: 2;
+    -webkit-animation: cc 153s linear infinite;
+    -o-animation: cc 153s linear infinite;
+    -moz-animation: cc 153s linear infinite;
+    animation: cc 153s linear infinite;
+  }
+  div#top {
+    background: url("../images/midground.png");
+    z-index: 4;
+    -webkit-animation: dd 100s linear infinite;
+    -o-animation: dd 100s linear infinite;
+    animation: da 100s linear infinite;
+  }
 @-webkit-keyframes cc {
-  from {
-    background-position: 0 0;
-    -webkit-transform: translateY(10px);
-    -moz-transform: translateY(10px);
-    -ms-transform: translateY(10px);
-    -o-transform: translateY(10px);
-    transform: translateY(10px);
-  }
-  to {
-    background-position: 600% 0;
-  }
+    from {
+      background-position: 0 0;
+      -webkit-transform: translateY(10px);
+      -moz-transform: translateY(10px);
+      -ms-transform: translateY(10px);
+      -o-transform: translateY(10px);
+      transform: translateY(10px);
+    }
+    to {
+      background-position: 600% 0;
+    }
 }
 @-o-keyframes cc {
-  from {
-    background-position: 0 0;
-    -webkit-transform: translateY(10px);
-    -moz-transform: translateY(10px);
-    -ms-transform: translateY(10px);
-    -o-transform: translateY(10px);
-    transform: translateY(10px);
-  }
-  to {
-    background-position: 600% 0;
-  }
+    from {
+      background-position: 0 0;
+      -webkit-transform: translateY(10px);
+      -moz-transform: translateY(10px);
+      -ms-transform: translateY(10px);
+      -o-transform: translateY(10px);
+      transform: translateY(10px);
+    }
+    to {
+      background-position: 600% 0;
+    }
 }
 @-moz-keyframes cc {
-  from {
-    background-position: 0 0;
-    -webkit-transform: translateY(10px);
-    -moz-transform: translateY(10px);
-    -ms-transform: translateY(10px);
-    -o-transform: translateY(10px);
-    transform: translateY(10px);
-  }
-  to {
-    background-position: 600% 0;
-  }
+    from {
+      background-position: 0 0;
+      -webkit-transform: translateY(10px);
+      -moz-transform: translateY(10px);
+      -ms-transform: translateY(10px);
+      -o-transform: translateY(10px);
+      transform: translateY(10px);
+    }
+    to {
+      background-position: 600% 0;
+    }
 }
 @-webkit-keyframes da {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 600%;
-  }
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 600%;
+    }
 }
 @-moz-keyframes da {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 600%;
-  }
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 600%;
+    }
 }
 @-ms-keyframes da {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 600%;
-  }
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 600%;
+    }
 }
 @-moz-keyframes cc {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 600% 0;
-  }
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 600% 0;
+    }
 }
 @-webkit-keyframes cc {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 600% 0;
-  }
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 600% 0;
+    }
 }
 @-o-keyframes cc {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 600% 0;
-  }
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 600% 0;
+    }
 }
 @keyframes cc {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 600% 0;
-  }
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 600% 0;
+    }
 }
 @-moz-keyframes da {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 600%;
-  }
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 600%;
+    }
 }
 @-webkit-keyframes da {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 600%;
-  }
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 600%;
+    }
 }
 @-o-keyframes da {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 600%;
-  }
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 600%;
+    }
 }
 @keyframes da {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 600%;
-  }
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 600%;
+    }
+}
 }
