@@ -74,7 +74,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Simon's 博客" type="application/atom+xml">
 
 
 
@@ -84,7 +84,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
 <meta property="og:url" content="https://simonlee.top/categories/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Simon&#39;s 博客">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-02-14T13:59:55.303Z">
 <meta name="twitter:card" content="summary">
@@ -124,7 +124,7 @@
 
 
 
-  <title>categories | Hexo</title>
+  <title>categories | Simon's 博客</title>
   
 
 
@@ -148,8 +148,11 @@
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-<div id="background" class="wall">
 
+<div id="background" class="wall"></div>
+<div id="midground" class="wall"></div>
+<div id="foreground" class="wall"></div>
+<div id="top" class="wall"></div>
 
   
   
@@ -168,12 +171,12 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Simon's 博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">随性但不任性</p>
       
   </div>
 
@@ -349,11 +352,7 @@
 
   
     <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
     </div>
-
   
 
 
@@ -623,45 +622,30 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname, 
-            owner: 'lxm100135',
-            repo: 'lxm',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: '26f27c7769274f3592bdebb608ee3729472deee0',
-            
-                client_id: '3ffb86141cf3575f73de'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
 
 
 
-
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'cLayRct6DqqbWBN23oOANff4-gzGzoHsz',
+        appKey: 'CBBLi4kbxbkcn1cR57K41Tew',
+        placeholder: 'Let it go ...',
+        avatar:'/images/big.png',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
@@ -809,9 +793,6 @@
   
   <script type="text/javascript" src="/lib/clipboard/clipboard.js"></script>
 <script type="text/javascript" src="/js/src/custom.js"></script>
-</div>
-<div id="midground" class="wall"></div>
-<div id="foreground" class="wall"></div>
-<div id="top" class="wall"></div>
+
 </body>
 </html>
