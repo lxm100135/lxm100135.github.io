@@ -2,7 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://simonlee.top/2019/02/14/paper/</loc>
-    <lastmod>2019-02-14</lastmod>
+    <lastmod>2019-02-17</lastmod>
+  </url>  <url>
+    <loc>https://simonlee.top/2018/02/14/docker/</loc>
+    <lastmod>2019-02-17</lastmod>
   </url>  <url>
     <loc>https://simonlee.top/2019/02/14/hello-world/</loc>
     <lastmod>2019-02-14</lastmod>

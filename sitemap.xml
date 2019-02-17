@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://simonlee.top/2019/02/14/paper/</loc>
+    
+    <lastmod>2019-02-17T13:18:39.918Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://simonlee.top/2018/02/14/docker/</loc>
+    
+    <lastmod>2019-02-17T12:52:57.163Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://simonlee.top/categories/index.html</loc>
     
     <lastmod>2019-02-14T13:59:55.303Z</lastmod>
@@ -40,13 +54,6 @@
     <loc>https://simonlee.top/board/index.html</loc>
     
     <lastmod>2019-02-14T09:25:43.810Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://simonlee.top/2019/02/14/paper/</loc>
-    
-    <lastmod>2019-02-14T09:25:12.213Z</lastmod>
     
   </url>
   
