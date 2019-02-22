@@ -327,158 +327,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://simonlee.top/2019/02/14/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://image.biaobaiju.com/uploads/20180802/01/1533146398-pkHMfZrmYw.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simon's 博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/14/hello-world/" itemprop="url">网络爬虫框架Webmagic</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-14T17:03:00+08:00">
-                2019-02-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/02/14/hello-world/" class="leancloud_visitors" data-flag-title="网络爬虫框架Webmagic">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？"><a href="#我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？" class="headerlink" title="我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？"></a>我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？</h1><ul>
-<li>可以实现搜索引擎</li>
-<li>大数据时代，<br>可以让我们获取更多的数据源。</li>
-<li>快速填充测试和运营数据</li>
-<li>为人工智能提供训练数据集</li>
-</ul>
-<h2 id="爬取页面全部内容"><a href="#爬取页面全部内容" class="headerlink" title="爬取页面全部内容"></a>爬取页面全部内容</h2><p><a href="https://blog.csdn.net/nav/ai" target="_blank" rel="noopener">https://blog.csdn.net/nav/ai</a></p>
-<p>（1）创建工程，引入依赖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">&lt;groupId&gt;us.codecraft&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;webmagic-core&lt;/artifactId&gt;</span><br><span class="line">&lt;version&gt;0.7.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">&lt;groupId&gt;us.codecraft&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;webmagic-extension&lt;/artifactId&gt;</span><br><span class="line">&lt;version&gt;0.7.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<p>（2）编写类实现网页内容的爬取</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.lxm.demo;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Page;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Site;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Spider;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.processor.PageProcessor;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 爬取类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyProcessor</span> <span class="keyword">implements</span> <span class="title">PageProcessor</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(Page page)</span> </span>&#123;</span><br><span class="line">System.out.println(page.getHtml().toString());</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Site <span class="title">getSite</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> Site.me().setSleepTime(<span class="number">100</span>).setRetryTimes(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Spider.create( <span class="keyword">new</span> MyProcessor()</span><br><span class="line">).addUrl(<span class="string">"https://blog.csdn.net"</span>).run();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Spider是爬虫启动的入口。在启动爬虫之前，我们需要使用一个PageProcessor创建<br>一个Spider对象，然后使用run()进行启动。<br><img src="http://pn5tkreux.bkt.clouddn.com/1550827500412vlh3apt6.png?imageslim" alt="paste image"><br><img src="http://pn5tkreux.bkt.clouddn.com/1550827773318nrfa5p8x.png?imageslim" alt="paste image"></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://simonlee.top/2018/02/14/docker/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -523,6 +371,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/14/docker/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/02/14/docker/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -669,7 +527,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://simonlee.top/2018/02/14/webmagic/">
+    <link itemprop="mainEntityOfPage" href="https://simonlee.top/2018/01/14/hello-world/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Simon Lee">
@@ -688,7 +546,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/14/webmagic/" itemprop="url">网络爬虫框架Webmagic</a></h1>
+                <a class="post-title-link" href="/2018/01/14/hello-world/" itemprop="url">网络爬虫框架Webmagic</a></h1>
         
 
         <div class="post-meta">
@@ -700,8 +558,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-14T17:25:00+08:00">
-                2018-02-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-14T17:03:00+08:00">
+                2018-01-14
               </time>
             
 
@@ -714,11 +572,21 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/14/hello-world/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/14/hello-world/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/2018/02/14/webmagic/" class="leancloud_visitors" data-flag-title="网络爬虫框架Webmagic">
+             <span id="/2018/01/14/hello-world/" class="leancloud_visitors" data-flag-title="网络爬虫框架Webmagic">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -751,7 +619,31 @@
       
         
           
-            <h1 id="网络爬虫可以做什么"><a href="#网络爬虫可以做什么" class="headerlink" title="网络爬虫可以做什么"></a>网络爬虫可以做什么</h1><p>我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？<br>可以实现搜索引擎<br>大数据时代，可以让我们获取更多的数据源。<br>快速填充测试和运营数据<br>为人工智能提供训练数据集</p>
+            <h1 id="我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？"><a href="#我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？" class="headerlink" title="我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？"></a>我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？</h1><ul>
+<li>可以实现搜索引擎</li>
+<li>大数据时代，<br>可以让我们获取更多的数据源。</li>
+<li>快速填充测试和运营数据</li>
+<li>为人工智能提供训练数据集</li>
+</ul>
+<h2 id="爬取页面全部内容"><a href="#爬取页面全部内容" class="headerlink" title="爬取页面全部内容"></a>爬取页面全部内容</h2><p><a href="https://blog.csdn.net/nav/ai" target="_blank" rel="noopener">https://blog.csdn.net/nav/ai</a></p>
+<p>（1）创建工程，引入依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">&lt;groupId&gt;us.codecraft&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;webmagic-core&lt;/artifactId&gt;</span><br><span class="line">&lt;version&gt;0.7.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">&lt;groupId&gt;us.codecraft&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;webmagic-extension&lt;/artifactId&gt;</span><br><span class="line">&lt;version&gt;0.7.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>（2）编写类实现网页内容的爬取</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.lxm.demo;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Page;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Site;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Spider;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.processor.PageProcessor;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 爬取类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyProcessor</span> <span class="keyword">implements</span> <span class="title">PageProcessor</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(Page page)</span> </span>&#123;</span><br><span class="line">System.out.println(page.getHtml().toString());</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Site <span class="title">getSite</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> Site.me().setSleepTime(<span class="number">100</span>).setRetryTimes(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Spider.create( <span class="keyword">new</span> MyProcessor()</span><br><span class="line">).addUrl(<span class="string">"https://blog.csdn.net"</span>).run();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Spider是爬虫启动的入口。在启动爬虫之前，我们需要使用一个PageProcessor创建<br>一个Spider对象，然后使用run()进行启动。<br><img src="http://pn5tkreux.bkt.clouddn.com/1550827500412vlh3apt6.png?imageslim" alt="paste image"><br><img src="http://pn5tkreux.bkt.clouddn.com/1550827773318nrfa5p8x.png?imageslim" alt="paste image"></p>
+<h2 id="爬取指定内容（XPath）"><a href="#爬取指定内容（XPath）" class="headerlink" title="爬取指定内容（XPath）"></a>爬取指定内容（XPath）</h2><p>我们通过指定xpath来抓取网页的部分内容<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(page.getHtml().xpath(<span class="string">"//*</span></span><br><span class="line"><span class="string">[@id=\"nav\"]/div/div/ul/li[5]/a"</span>).toString());</span><br></pre></td></tr></table></figure></p>
+<h2 id="添加目标地址"><a href="#添加目标地址" class="headerlink" title="添加目标地址"></a>添加目标地址</h2><p>需求：只提取播客的文章详细页内容，并提取标题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.lxm.demo;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Page;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Site;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Spider;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.processor.PageProcessor;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 爬取类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyProcessor</span> <span class="keyword">implements</span> <span class="title">PageProcessor</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(Page page)</span> </span>&#123;</span><br><span class="line"><span class="comment">//page.addTargetRequests( page.getHtml().links().all() );//将当前页</span></span><br><span class="line">面里的所有链接都添加到目标页面中</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">page.addTargetRequests(</span><br><span class="line">page.getHtml().links().regex(<span class="string">"https://blog.csdn.net/[a‐z 0‐9</span></span><br><span class="line"><span class="string">‐]+/article/details/[0‐9]&#123;8&#125;"</span>).all() );</span><br><span class="line">System.out.println(page.getHtml().xpath(<span class="string">"//*</span></span><br><span class="line"><span class="string">[@id=\"mainBox\"]/main/div[1]/div[1]/h1/text()"</span>).toString());</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Site <span class="title">getSite</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> Site.me().setSleepTime(<span class="number">100</span>).setRetryTimes(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Spider.create( <span class="keyword">new</span> MyProcessor()</span><br><span class="line">).addUrl(<span class="string">"https://blog.csdn.net/nav/ai"</span>).run();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h1><h2 id="ConsolePipeline-控制台输出"><a href="#ConsolePipeline-控制台输出" class="headerlink" title="ConsolePipeline 控制台输出"></a>ConsolePipeline 控制台输出</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 爬取类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyProcessor</span> <span class="keyword">implements</span> <span class="title">PageProcessor</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(Page page)</span> </span>&#123;</span><br><span class="line"><span class="comment">//page.addTargetRequests( page.getHtml().links().all() );//将当前页</span></span><br><span class="line">面里的所有链接都添加到目标页面中</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">page.addTargetRequests(</span><br><span class="line">page.getHtml().links().regex(<span class="string">"https://blog.csdn.net/[a‐z 0‐9</span></span><br><span class="line"><span class="string">‐]+/article/details/[0‐9]&#123;8&#125;"</span>).all() );</span><br><span class="line"><span class="comment">//System.out.println(page.getHtml().xpath("//*</span></span><br><span class="line">[<span class="meta">@id</span>=\<span class="string">"mainBox\"]/main/div[1]/div[1]/h1/text()"</span>).toString());</span><br><span class="line">page.putField(<span class="string">"title"</span>,page.getHtml().xpath(<span class="string">"//*</span></span><br><span class="line"><span class="string">[@id=\"mainBox\"]/main/div[1]/div[1]/h1/text()"</span>).toString());</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Site <span class="title">getSite</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> Site.me().setSleepTime(<span class="number">100</span>).setRetryTimes(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Spider.create( <span class="keyword">new</span> MyProcessor() )</span><br><span class="line">.addUrl(<span class="string">"https://blog.csdn.net"</span>)</span><br><span class="line">.addPipeline(<span class="keyword">new</span> ConsolePipeline())</span><br><span class="line">.run();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="FilePipeline-文件保存"><a href="#FilePipeline-文件保存" class="headerlink" title="FilePipeline 文件保存"></a>FilePipeline 文件保存</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Spider.create( <span class="keyword">new</span> MyProcessor() )</span><br><span class="line">.addUrl(<span class="string">"https://blog.csdn.net"</span>)</span><br><span class="line">.addPipeline(<span class="keyword">new</span> ConsolePipeline())</span><br><span class="line">.addPipeline(<span class="keyword">new</span> FilePipeline(<span class="string">"e:/data"</span>))<span class="comment">//以文件方式保存</span></span><br><span class="line">.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="JsonFilePipeline"><a href="#JsonFilePipeline" class="headerlink" title="JsonFilePipeline"></a>JsonFilePipeline</h1><p>以json方式保存<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Spider.create( <span class="keyword">new</span> MyProcessor() )</span><br><span class="line">.addUrl(<span class="string">"https://blog.csdn.net"</span>)</span><br><span class="line">.addPipeline(<span class="keyword">new</span> ConsolePipeline())</span><br><span class="line">.addPipeline(<span class="keyword">new</span> FilePipeline(<span class="string">"e:/data"</span>))</span><br><span class="line">.addPipeline(<span class="keyword">new</span> JsonFilePipeline(<span class="string">"e:/json"</span>))<span class="comment">// 以json方式保</span></span><br><span class="line">存</span><br><span class="line">.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="定制Pipeline"><a href="#定制Pipeline" class="headerlink" title="定制Pipeline"></a>定制Pipeline</h1><p>如果以上Pipeline都不能满足你的需要，你可以定制Pipeline<br>（1）创建类MyPipeline实现接口Pipeline<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.demo;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.ResultItems;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Task;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.pipeline.Pipeline;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyPipeline</span> <span class="keyword">implements</span> <span class="title">Pipeline</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(ResultItems resultItems, Task task)</span> </span>&#123;</span><br><span class="line">String title=resultItems.get(<span class="string">"title"</span>);</span><br><span class="line">System.out.println(<span class="string">"我的定制的 title:"</span>+title);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>（2）修改main方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Spider.create( <span class="keyword">new</span> MyProcessor() )</span><br><span class="line">.addUrl(<span class="string">"https://blog.csdn.net"</span>)</span><br><span class="line">.addPipeline(<span class="keyword">new</span> ConsolePipeline())</span><br><span class="line">.addPipeline(<span class="keyword">new</span> FilePipeline(<span class="string">"e:/data"</span>))</span><br><span class="line">.addPipeline(<span class="keyword">new</span> JsonFilePipeline(<span class="string">"e:/json"</span>))</span><br><span class="line">.addPipeline(<span class="keyword">new</span> MyPipeline())<span class="comment">//定制化输出</span></span><br><span class="line">.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Scheduler"><a href="#Scheduler" class="headerlink" title="Scheduler"></a>Scheduler</h1><p>我们刚才完成的功能，每次运行可能会爬取重复的页面，这样做是没有任何意义的。<br>Scheduler(URL管理) 最基本的功能是实现对已经爬取的URL进行标示。可以实现URL的增<br>量去重。<br>目前scheduler主要有三种实现方式：<br>1）内存队列 QueueScheduler<br>2）文件队列 FileCacheQueueScheduler<br>3) Redis队列 RedisScheduler</p>
+<h2 id="内存队列"><a href="#内存队列" class="headerlink" title="内存队列"></a>内存队列</h2><p>使用setScheduler来设置Scheduler<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Spider.create( <span class="keyword">new</span> MyProcessor() )</span><br><span class="line">.addUrl(<span class="string">"https://blog.csdn.net"</span>)</span><br><span class="line">.setScheduler(<span class="keyword">new</span> QueueScheduler())</span><br><span class="line">.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="文件队列"><a href="#文件队列" class="headerlink" title="文件队列"></a>文件队列</h2><p>使用文件保存抓取URL，可以在关闭程序并下次启动时，从之前抓取到的URL继续抓取<br>（1）创建文件夹E:\scheduler<br>（2）修改代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Spider.create( <span class="keyword">new</span> MyProcessor() )</span><br><span class="line">.addUrl(<span class="string">"https://blog.csdn.net"</span>)</span><br><span class="line"><span class="comment">//.setScheduler(new QueueScheduler())//设置内存队列</span></span><br><span class="line">.setScheduler(<span class="keyword">new</span></span><br><span class="line">FileCacheQueueScheduler(<span class="string">"E:\\scheduler"</span>))<span class="comment">//设置文件队列</span></span><br><span class="line">.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行后文件夹E:\scheduler会产生两个文件blog.csdn.net.urls.txt和<br>blog.csdn.net.cursor.txt</p>
+<h2 id="Redis队列"><a href="#Redis队列" class="headerlink" title="Redis队列"></a>Redis队列</h2><p>使用Redis保存抓取队列，可进行多台机器同时合作抓取<br>（1）运行redis服务端<br>（2）修改代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Spider.create( <span class="keyword">new</span> MyProcessor() )</span><br><span class="line">.addUrl(<span class="string">"https://blog.csdn.net"</span>)</span><br><span class="line"><span class="comment">//.setScheduler(new QueueScheduler())//设置内存队列</span></span><br><span class="line"><span class="comment">//.setScheduler(new</span></span><br><span class="line">FileCacheQueueScheduler(<span class="string">"E:\\scheduler"</span>))<span class="comment">//设置文件队列</span></span><br><span class="line">.setScheduler(<span class="keyword">new</span> RedisScheduler(<span class="string">"127.0.0.1"</span>))<span class="comment">//设置Redis队</span></span><br><span class="line">列</span><br><span class="line">.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -840,7 +732,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1063,21 +955,30 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
 
 
 
-
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = '';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        app_id: 'UAf8w5dL0wr3jvJ9S50ltQQp-gzGzoHsz',
+        app_key: '1iHDsLKraU90FKuBP8YD7LDq',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'',
+        guest_info:guest,
+        pageSize:'' || 10,
+    });
+  </script>
 
 
 
@@ -1227,5 +1128,8 @@
 <script type="text/javascript" src="/js/src/custom.js"></script>
 
   <script id="ribbon" type="text/javascript" size="100" alpha="0.3" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":null,"use":"live2d-widget-model-shizuku","display":null,"position":"left","width":100,"height":240,"mobile":null,"show":true,"log":false});</script></body>
+   <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":100,"height":240},"mobile":{"show":true},"log":false});</script></body>
 </html>
