@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://simonlee.top/"/>
-  <updated>2019-02-22T07:38:22.786Z</updated>
+  <updated>2019-02-22T09:29:34.753Z</updated>
   <id>https://simonlee.top/</id>
   
   <author>
@@ -17,19 +17,19 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
+    <title>网络爬虫框架Webmagic</title>
     <link href="https://simonlee.top/2019/02/14/hello-world/"/>
     <id>https://simonlee.top/2019/02/14/hello-world/</id>
     <published>2019-02-14T09:03:00.000Z</published>
-    <updated>2019-02-22T07:38:22.786Z</updated>
+    <updated>2019-02-22T09:29:34.753Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？"><a href="#我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？" class="headerlink" title="我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？"></a>我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？</h1><ul><li>可以实现搜索引擎</li><li>大数据时代，<br>可以让我们获取更多的数据源。</li><li>快速填充测试和运营数据</li><li>为人工智能提供训练数据集</li></ul><h2 id="爬取页面全部内容"><a href="#爬取页面全部内容" class="headerlink" title="爬取页面全部内容"></a>爬取页面全部内容</h2><p><a href="https://blog.csdn.net/nav/ai" target="_blank" rel="noopener">https://blog.csdn.net/nav/ai</a></p><p>（1）创建工程，引入依赖</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">&lt;groupId&gt;us.codecraft&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;webmagic-core&lt;/artifactId&gt;</span><br><span class="line">&lt;version&gt;0.7.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">&lt;groupId&gt;us.codecraft&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;webmagic-extension&lt;/artifactId&gt;</span><br><span class="line">&lt;version&gt;0.7.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure><p>（2）编写类实现网页内容的爬取</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.lxm.demo;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Page;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Site;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Spider;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.processor.PageProcessor;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 爬取类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyProcessor</span> <span class="keyword">implements</span> <span class="title">PageProcessor</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(Page page)</span> </span>&#123;</span><br><span class="line">System.out.println(page.getHtml().toString());</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Site <span class="title">getSite</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> Site.me().setSleepTime(<span class="number">100</span>).setRetryTimes(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Spider.create( <span class="keyword">new</span> MyProcessor()</span><br><span class="line">).addUrl(<span class="string">"https://blog.csdn.net"</span>).run();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Spider是爬虫启动的入口。在启动爬虫之前，我们需要使用一个PageProcessor创建<br>一个Spider对象，然后使用run()进行启动。<br><img src="http://pn5tkreux.bkt.clouddn.com/1550827500412vlh3apt6.png?imageslim" alt="paste image"><br><img src="http://pn5tkreux.bkt.clouddn.com/1550827773318nrfa5p8x.png?imageslim" alt="paste image"></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+        &lt;h1 id=&quot;我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？&quot;&gt;&lt;a href=&quot;#我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？&quot; class=&quot;headerlink&quot; title=&quot;我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？&quot;&gt;&lt;/a&gt;我们初步认识了网络爬虫
       
     
     </summary>
@@ -51,6 +51,27 @@
       
       
         &lt;h1 id=&quot;Docker安装与启动&quot;&gt;&lt;a href=&quot;#Docker安装与启动&quot; class=&quot;headerlink&quot; title=&quot;Docker安装与启动&quot;&gt;&lt;/a&gt;Docker安装与启动&lt;/h1&gt;&lt;p&gt;1安装环境说明&lt;br&gt;Docker官方建议在Ubuntu中安装，因为
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>网络爬虫框架Webmagic</title>
+    <link href="https://simonlee.top/2018/02/14/webmagic/"/>
+    <id>https://simonlee.top/2018/02/14/webmagic/</id>
+    <published>2018-02-14T09:25:00.000Z</published>
+    <updated>2019-02-22T09:15:44.719Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="网络爬虫可以做什么"><a href="#网络爬虫可以做什么" class="headerlink" title="网络爬虫可以做什么"></a>网络爬虫可以做什么</h1><p>我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？<br>可以实现搜索引擎<br>大数据时代，可以让我们获取更多的数据源。<br>快速填充测试和运营数据<br>为人工智能提供训练数据集</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;网络爬虫可以做什么&quot;&gt;&lt;a href=&quot;#网络爬虫可以做什么&quot; class=&quot;headerlink&quot; title=&quot;网络爬虫可以做什么&quot;&gt;&lt;/a&gt;网络爬虫可以做什么&lt;/h1&gt;&lt;p&gt;我们初步认识了网络爬虫，网络爬虫具体可以做什么呢？&lt;br&gt;可以实现搜索引擎&lt;br&gt;大
       
     
     </summary>
